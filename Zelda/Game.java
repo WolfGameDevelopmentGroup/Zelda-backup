@@ -48,6 +48,7 @@ public class Game implements Runnable{
 	}
 
 	public void renderizeGame(){
+		this.screen.drawFrame();
 	}
 
 	public synchronized void startGame(){

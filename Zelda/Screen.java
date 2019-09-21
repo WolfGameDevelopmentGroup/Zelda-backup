@@ -78,6 +78,14 @@ public class Screen extends Canvas{
 		this.jframe.setVisible(true);
 	}
 
+	public void drawFrame(){
+		this.g = this.layer.getGraphics();
+		this.drawBackground();
+		this.g = this.bs.getDrawGraphics();
+		this.g.drawImage(this.layer, 0, 0, this.WIDTH*this.SCALE,this.HEIGHT*this.SCALE,null);
+		this.bs.show();
+	}
+
 	private void drawBackground(){
 		this.g.setColor(this.bgColor);
 		this.g.fillRect(0,0,this.WIDTH*this.SCALE, this.HEIGHT*this.SCALE);
