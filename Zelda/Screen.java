@@ -1,25 +1,27 @@
 /*
 	 Screen.java (Java)
 	 
-	 Objetivo: Gerar a tela do jogo.
+	 Purpose: Gerar a tela do jogo.
 	 
 	 Site: http://www.dirackslounge.online
 	 
-	 Versão 1.0
+	 Version 1.0
 	 
-	 Programador: Rodolfo Dirack 06/09/2019
+	 Programer: Rodolfo Dirack 06/09/2019
 	 
 	 Email: rodolfo_profissional@hotmail.com
 	 
-	 Licença: GPL-3.0 <https://www.gnu.org/licenses/gpl-3.0.txt>.
+	 License: GPL-3.0 <https://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
 package Zelda;
 
+import Zelda.SpriteSheet;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -38,6 +40,8 @@ public class Screen extends Canvas{
 	private BufferedImage layer;
 	private Color bgColor = Color.WHITE;
 	private Graphics g;
+	private SpriteSheet sheet;
+	private BufferedImage playerImage;
 
 	public Screen(String jframeTitle, int WIDTH, int HEIGHT, int SCALE){
 		this.WIDTH = WIDTH;
@@ -64,6 +68,9 @@ public class Screen extends Canvas{
 		this.g.setColor(this.bgColor);
 		this.showScreen();
 		this.canvas.requestFocus();
+
+		this.sheet = new SpriteSheet("/images/spritesheet.png");
+		this.playerImage = this.sheet.getSprite(32,0,16,16);
 	}
 
 	public int getScreenWidth(){
@@ -81,13 +88,19 @@ public class Screen extends Canvas{
 	public void drawFrame(){
 		this.g = this.layer.getGraphics();
 		this.drawBackground();
+		this.drawPlayer();
 		this.g = this.bs.getDrawGraphics();
 		this.g.drawImage(this.layer, 0, 0, this.WIDTH*this.SCALE,this.HEIGHT*this.SCALE,null);
 		this.bs.show();
 	}
 
+	private void drawPlayer(){
+		Graphics2D g2 = (Graphics2D) this.g;
+		g2.drawImage(this.playerImage,100,100, 32*this.SCALE,32*this.SCALE,null);
+	}
+
 	private void drawBackground(){
-		this.g.setColor(this.bgColor);
+		this.g.setColor(Color.WHITE);
 		this.g.fillRect(0,0,this.WIDTH*this.SCALE, this.HEIGHT*this.SCALE);
 	}
 

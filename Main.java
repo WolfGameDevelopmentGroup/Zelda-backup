@@ -23,7 +23,7 @@ public class Main{
 		String TITLE="Zelda Game #1";
 		int WIDTH=200;
 		int HEIGHT=200;
-		int SCALE=1;
+		int SCALE=3;
 
 		Game game = new Game(TITLE, WIDTH, HEIGHT, SCALE);
 		
