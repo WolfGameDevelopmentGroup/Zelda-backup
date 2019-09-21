@@ -20,7 +20,12 @@ public class Main{
 
 	public static void main(String[] args){
 
-		Game game = new Game();
+		String TITLE="Zelda Game #1";
+		int WIDTH=200;
+		int HEIGHT=200;
+		int SCALE=1;
+
+		Game game = new Game(TITLE, WIDTH, HEIGHT, SCALE);
 		
 		game.startGame();
 	}

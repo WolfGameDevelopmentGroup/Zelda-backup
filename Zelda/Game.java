@@ -16,10 +16,28 @@
 
 package Zelda;
 
+import Zelda.Screen;
+import java.awt.Color;
+import java.util.*;
+
 public class Game implements Runnable{
 
 	public boolean isRunning=false;
 	private int frame=0;
+	private String TITLE;
+	private int SCREEN_WIDTH;
+	private int SCREEN_HEIGHT;
+	private int SCALE=1;
+	private Screen screen;
+
+	public Game(String TITLE, int WIDTH, int HEIGHT, int SCALE){
+		this.TITLE = TITLE;
+		this.SCREEN_WIDTH = WIDTH*SCALE;
+		this.SCREEN_HEIGHT = HEIGHT*SCALE;
+		this.SCALE = SCALE;
+		this.screen = new Screen(TITLE, WIDTH, HEIGHT, SCALE);
+		this.screen.setBackgroungColor(Color.BLACK);
+	}
 
 	public int getActualFrameNumber(){
 		return this.frame;
