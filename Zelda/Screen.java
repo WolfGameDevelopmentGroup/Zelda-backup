@@ -106,7 +106,6 @@ public class Screen extends Canvas{
 
 	public void setBackgroungColor(Color bgColor){
 		this.bgColor = bgColor;
-		this.g.setColor(this.bgColor);
 	}
 
 }
