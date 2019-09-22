@@ -29,6 +29,8 @@ public class Game implements Runnable{
 	private int SCREEN_HEIGHT;
 	private int SCALE=1;
 	private Screen screen;
+	private int framesToUpdatePlayerImage=30;
+	private int countGameFrame=0;
 
 	public Game(String TITLE, int SCREEN_WIDTH, int SCREEN_HEIGHT, int SCALE){
 		this.TITLE = TITLE;
@@ -45,6 +47,19 @@ public class Game implements Runnable{
 
 	public void updateGame(){
 		this.frame++;
+		this.countGameFrame++;
+
+		if(this.countGameFrame >= this.framesToUpdatePlayerImage){
+			this.countGameFrame = 0;
+			int index = this.screen.getCurentAnimationIndex() + 1;
+			this.screen.setCurentAnimationIndex(index);
+
+			if(this.screen.getCurentAnimationIndex() >= 8){
+				this.screen.setCurentAnimationIndex(0);
+			}
+
+
+		}
 	}
 
 	public void renderizeGame(){

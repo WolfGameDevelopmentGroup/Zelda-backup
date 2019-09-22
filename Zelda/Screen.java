@@ -41,7 +41,8 @@ public class Screen extends Canvas{
 	private Color bgColor = Color.WHITE;
 	private Graphics g;
 	private SpriteSheet sheet;
-	private BufferedImage playerImage;
+	private BufferedImage[] playerImage = new BufferedImage[8];
+	private int curentAnimationIndex = 0;
 
 	public Screen(String jframeTitle, int WIDTH, int HEIGHT, int SCALE){
 		this.WIDTH = WIDTH;
@@ -70,7 +71,27 @@ public class Screen extends Canvas{
 		this.canvas.requestFocus();
 
 		this.sheet = new SpriteSheet("/images/spritesheet.png");
-		this.playerImage = this.sheet.getSprite(32,0,16,16);
+		this.loadPlayerImages();
+		
+	}
+
+	private void loadPlayerImages(){
+
+		int i,j;
+
+		for(j=0;j<2;j++){
+			for(i=0;i<4;i++){
+				this.playerImage[i+(j*4)] = this.sheet.getSprite(32+(i*16),0+(j*16),16,16);
+			}
+		}
+	}
+
+	public int getCurentAnimationIndex(){
+		return this.curentAnimationIndex;
+	}
+
+	public void setCurentAnimationIndex(int index){
+		this.curentAnimationIndex = index;
 	}
 
 	public int getScreenWidth(){
@@ -96,7 +117,7 @@ public class Screen extends Canvas{
 
 	private void drawPlayer(){
 		Graphics2D g2 = (Graphics2D) this.g;
-		g2.drawImage(this.playerImage,100,100, 32*this.SCALE,32*this.SCALE,null);
+		g2.drawImage(this.playerImage[this.curentAnimationIndex],100,100, 32*this.SCALE,32*this.SCALE,null);
 	}
 
 	private void drawBackground(){
