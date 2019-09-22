@@ -100,7 +100,7 @@ public class Screen extends Canvas{
 	}
 
 	private void drawBackground(){
-		this.g.setColor(Color.WHITE);
+		this.g.setColor(this.bgColor);
 		this.g.fillRect(0,0,this.WIDTH*this.SCALE, this.HEIGHT*this.SCALE);
 	}
 
