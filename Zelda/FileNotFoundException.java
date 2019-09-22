@@ -3,7 +3,7 @@
 	 
 	 Purpose: Inform if the spritesheet is not found.
 	 
-	 Version 1.0
+	 Version 0.1
 	 
 	 Site: http://www.dirackslounge.online
 	 
