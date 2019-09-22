@@ -5,7 +5,7 @@
 	 
 	 Site: http://www.dirackslounge.online
 	 
-	 Version 1.0
+	 Version 0.1
 	 
 	 Programer: Rodolfo A C Neves (Dirack) 19/09/2019
 	 
@@ -21,11 +21,11 @@ public class Main{
 	public static void main(String[] args){
 
 		String TITLE="Zelda Game #1";
-		int WIDTH=200;
-		int HEIGHT=200;
+		int SCREEN_WIDTH=200;
+		int SCRREN_HEIGHT=200;
 		int SCALE=3;
 
-		Game game = new Game(TITLE, WIDTH, HEIGHT, SCALE);
+		Game game = new Game(TITLE, SCREEN_WIDTH, SCRREN_HEIGHT, SCALE);
 		
 		game.startGame();
 	}
