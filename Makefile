@@ -20,6 +20,8 @@ DEP = $(PAC:.java=.class)
 MAIN = Main.java
 MAINCLASS = $(MAIN:.java=.class)
 BIN = $(MAIN:.java=)
+RES = $(wildcard ./images/*)
+JARFILE = zelda.jar
 
 all:	libbed run
 
@@ -34,3 +36,11 @@ run:	$(MAINCLASS)
 clean:
 	rm $(DEP)
 	rm *.class
+
+jar:	$(JARFILE)
+
+$(JARFILE):	$(DEP) $(RES)
+	jar cmvf MANIFEST.MF $@ $(MAINCLASS) $(DEP) $(RES)
+
+runjar:	$(JARFILE)
+	java -jar $(JARFILE)
