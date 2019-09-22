@@ -3,7 +3,7 @@
 	 
 	 Purpose: To load game objects sprites.
 	 
-	 Version 1.0
+	 Version 0.1
 	 
 	 Site: http://www.dirackslounge.online
 	 
@@ -18,6 +18,8 @@ package Zelda;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import Zelda.FileNotFoundException;
+import java.net.URL; 
 
 public class SpriteSheet{
 
@@ -25,17 +27,23 @@ public class SpriteSheet{
 
 	public SpriteSheet(String path){
 
+		URL input = getClass().getResource(path);
+
 		try {
+			if( input == null){
+				throw new FileNotFoundException(path);
+			}
+
 			spritesheet = ImageIO.read(getClass().getResource(path));
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		} catch (IOException | FileNotFoundException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
 
 	public BufferedImage getSprite(int x, int y, int width, int height){
 		return spritesheet.getSubimage(x,y,width,height);
-
 	}
 
 }

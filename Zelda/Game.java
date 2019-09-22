@@ -5,7 +5,7 @@
 	 
 	 Site: http://www.dirackslounge.online
 	 
-	 Version 1.0
+	 Version 0.1
 	 
 	 Programer: Rodolfo Dirack 19/09/2019
 	 
@@ -30,13 +30,13 @@ public class Game implements Runnable{
 	private int SCALE=1;
 	private Screen screen;
 
-	public Game(String TITLE, int WIDTH, int HEIGHT, int SCALE){
+	public Game(String TITLE, int SCREEN_WIDTH, int SCREEN_HEIGHT, int SCALE){
 		this.TITLE = TITLE;
-		this.SCREEN_WIDTH = WIDTH*SCALE;
-		this.SCREEN_HEIGHT = HEIGHT*SCALE;
+		this.SCREEN_WIDTH = SCREEN_WIDTH*SCALE;
+		this.SCREEN_HEIGHT = SCREEN_HEIGHT*SCALE;
 		this.SCALE = SCALE;
-		this.screen = new Screen(TITLE, WIDTH, HEIGHT, SCALE);
-		this.screen.setBackgroungColor(Color.BLACK);
+		this.screen = new Screen(TITLE, SCREEN_WIDTH, SCREEN_HEIGHT, SCALE);
+		this.screen.setBackgroungColor(Color.WHITE);
 	}
 
 	public int getActualFrameNumber(){
