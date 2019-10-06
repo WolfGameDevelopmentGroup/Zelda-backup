@@ -30,7 +30,7 @@ public class Game implements Runnable{
 	private int SCREEN_HEIGHT;
 	private int SCALE=1;
 	private Screen screen;
-	private int framesToUpdatePlayerImage=30;
+	private int framesToUpdatePlayerImage=10;
 	private int countGameFrame=0;
 	private Player player;
 

@@ -16,6 +16,9 @@
 
 package Zelda;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 public class Player extends Entities{
 
 	public Player(int WIDTH, int HEIGHT, int x, int y, SpriteSheet sprite){
@@ -42,6 +45,18 @@ public class Player extends Entities{
 
 	public void setCurentImageIndex(int index){
 		this.curentImageIndex = index;
+	}
+
+	public void draw(Graphics g, boolean moveRight){
+
+		Graphics2D g2 = (Graphics2D) g;
+
+		if(moveRight == true){
+			g2.drawImage(this.image[0],this.x,this.y,this.width,this.height,null);
+		} else {
+			g2.drawImage(this.image[7],this.x,this.y,this.width,this.height,null);
+		}
+
 	}
 
 	public void update(){}
