@@ -27,6 +27,6 @@ public class FileNotFoundException extends Exception{
 
 	@Override
 	public String getMessage(){
-		return "SpriteSheet not found in path: "+path+" \nPlease verify correct file path";
+		return "SpriteSheet file not found in path: "+path+" \nPlease verify correct file path";
 	}
 }

@@ -25,7 +25,7 @@ public class SpriteSheet{
 
 	private BufferedImage spritesheet;
 
-	public SpriteSheet(String path){
+	public SpriteSheet(String path) throws FileNotFoundException{
 
 		URL input = getClass().getResource(path);
 

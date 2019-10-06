@@ -44,7 +44,7 @@ public class Screen extends Canvas{
 	private BufferedImage[] playerImage = new BufferedImage[8];
 	private int curentAnimationIndex = 0;
 
-	public Screen(String jframeTitle, int WIDTH, int HEIGHT, int SCALE){
+	public Screen(String jframeTitle, int WIDTH, int HEIGHT, int SCALE) throws FileNotFoundException{
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.SCALE = SCALE;
