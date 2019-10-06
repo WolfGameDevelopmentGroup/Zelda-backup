@@ -17,6 +17,7 @@
 package Zelda;
 
 import Zelda.Screen;
+import Zelda.Player;
 import java.awt.Color;
 import java.util.*;
 
@@ -31,14 +32,17 @@ public class Game implements Runnable{
 	private Screen screen;
 	private int framesToUpdatePlayerImage=30;
 	private int countGameFrame=0;
+	private Player player;
 
-	public Game(String TITLE, int SCREEN_WIDTH, int SCREEN_HEIGHT, int SCALE){
+	public Game(String TITLE, int SCREEN_WIDTH, int SCREEN_HEIGHT, int SCALE) throws FileNotFoundException{
 		this.TITLE = TITLE;
 		this.SCREEN_WIDTH = SCREEN_WIDTH*SCALE;
 		this.SCREEN_HEIGHT = SCREEN_HEIGHT*SCALE;
 		this.SCALE = SCALE;
 		this.screen = new Screen(TITLE, SCREEN_WIDTH, SCREEN_HEIGHT, SCALE);
 		this.screen.setBackgroungColor(Color.WHITE);
+		int x=100, y=100;
+		this.player = new Player(32*SCALE,32*SCALE,x,y,this.screen.sheet);
 	}
 
 	public int getActualFrameNumber(){
@@ -51,11 +55,11 @@ public class Game implements Runnable{
 
 		if(this.countGameFrame >= this.framesToUpdatePlayerImage){
 			this.countGameFrame = 0;
-			int index = this.screen.getCurentAnimationIndex() + 1;
-			this.screen.setCurentAnimationIndex(index);
+			int index = this.player.getCurentImageIndex() + 1;
+			this.player.setCurentImageIndex(index);
 
-			if(this.screen.getCurentAnimationIndex() >= 8){
-				this.screen.setCurentAnimationIndex(0);
+			if(this.player.getCurentImageIndex() >= 8){
+				this.player.setCurentImageIndex(0);
 			}
 
 
@@ -63,7 +67,7 @@ public class Game implements Runnable{
 	}
 
 	public void renderizeGame(){
-		this.screen.drawFrame();
+		this.screen.drawFrame(this.player);
 	}
 
 	public synchronized void startGame(){
