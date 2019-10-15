@@ -26,6 +26,7 @@ public class Player extends Entities{
 		this.setSize(WIDTH,HEIGHT);
 		this.setPosition(x,y);
 		this.loadImages(sprite);
+		this.curentImageIndex = 0;
 	}
 
 	private void loadImages(SpriteSheet sprite){
@@ -51,10 +52,16 @@ public class Player extends Entities{
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		if(moveRight == true){
-			g2.drawImage(this.image[0],this.x,this.y,this.width,this.height,null);
+		if(moveRight){
+			if(this.curentImageIndex < 4){
+				g2.drawImage(this.image[this.curentImageIndex],
+				this.x,this.y,this.width,this.height,null);
+			}
 		} else {
-			g2.drawImage(this.image[7],this.x,this.y,this.width,this.height,null);
+			if(this.curentImageIndex <= 7){
+				g2.drawImage(this.image[this.curentImageIndex],
+				this.x,this.y,this.width,this.height,null);
+			}
 		}
 
 	}

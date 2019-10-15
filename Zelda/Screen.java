@@ -87,7 +87,7 @@ public class Screen extends Canvas{
 	public void drawFrame(Player player){
 		this.g = this.layer.getGraphics();
 		this.drawBackground();
-		if(player.getCurentImageIndex() <= 4){
+		if(player.getCurentImageIndex() <= 3){
 			player.draw(this.g, true);
 		}else{
 			player.draw(this.g, false);
