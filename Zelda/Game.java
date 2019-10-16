@@ -32,7 +32,7 @@ public class Game implements Runnable, KeyListener{
 	private int SCREEN_HEIGHT;
 	private int SCALE=1;
 	private Screen screen;
-	private int framesToUpdatePlayerImage=10;
+	private int framesToUpdatePlayerImage=5;
 	private int countGameFrame=0;
 	private Player player;
 
@@ -56,13 +56,13 @@ public class Game implements Runnable, KeyListener{
 		this.frame++;
 
 		if(this.player.moveRight){
-			this.player.x++;
+			this.player.x += this.SCALE;
 		}else if(this.player.moveLeft){
-			this.player.x--;
+			this.player.x -= this.SCALE;
 		}else if(this.player.moveUp){
-			this.player.y--;
+			this.player.y -= this.SCALE;
 		}else if(this.player.moveDown){
-			this.player.y++;
+			this.player.y += this.SCALE;
 		}
 
 	}

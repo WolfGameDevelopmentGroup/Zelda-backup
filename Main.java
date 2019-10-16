@@ -15,10 +15,11 @@
 */
 
 import Zelda.Game;
+import Zelda.FileNotFoundException;
 
 public class Main{
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws FileNotFoundException{
 
 		String TITLE="Zelda Game #1";
 		int SCREEN_WIDTH=200;
