@@ -37,13 +37,18 @@ public class Map extends SpriteSheet{
 
 		int width = this.spritesheet.getWidth();
 		int height = this.spritesheet.getHeight();
-		int i;
+		int xx, yy, currentPixel;
 
 		this.spritesheet.getRGB(0,0,width,height,this.pixels,0,width);
 
-		for(i=0; i < pixels.length; i++){
-			if(pixels[i] == 0xFFFF0000) 
-				System.out.println("RED pixel");
+		for(xx=0; xx < width; xx++){
+			for(yy=0; yy < height; yy++){
+
+				currentPixel = pixels[xx + yy * width];
+
+				if(currentPixel == 0xFFFF0000) 
+					System.out.println("RED pixel");
+			}
 		}
 
 	}
