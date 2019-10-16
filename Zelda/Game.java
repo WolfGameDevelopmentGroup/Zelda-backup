@@ -20,8 +20,10 @@ import Zelda.Screen;
 import Zelda.Player;
 import java.awt.Color;
 import java.util.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Game implements Runnable{
+public class Game implements Runnable, KeyListener{
 
 	public boolean isRunning=false;
 	private int frame=0;
@@ -43,6 +45,7 @@ public class Game implements Runnable{
 		this.screen.setBackgroungColor(Color.WHITE);
 		int x=100, y=100;
 		this.player = new Player(32*SCALE,32*SCALE,x,y,this.screen.sheet);
+		this.screen.canvas.addKeyListener(this);
 	}
 
 	public int getActualFrameNumber(){
@@ -51,23 +54,50 @@ public class Game implements Runnable{
 
 	public void updateGame(){
 		this.frame++;
+
+		if(this.player.moveRight){
+			this.player.x++;
+		}else if(this.player.moveLeft){
+			this.player.x--;
+		}else if(this.player.moveUp){
+			this.player.y--;
+		}else if(this.player.moveDown){
+			this.player.y++;
+		}
+
+	}
+
+	public void renderizeGame(){
+
 		this.countGameFrame++;
 
 		if(this.countGameFrame >= this.framesToUpdatePlayerImage){
 			this.countGameFrame = 0;
-			int index = this.player.getCurentImageIndex() + 1;
-			this.player.setCurentImageIndex(index);
-
-			if(this.player.getCurentImageIndex() >= 8){
-				this.player.setCurentImageIndex(0);
-			}
-
-
+			this.animatePlayer();
 		}
+
+		this.screen.drawFrame(this.player);
 	}
 
-	public void renderizeGame(){
-		this.screen.drawFrame(this.player);
+
+	public void animatePlayer(){
+		
+		int index = this.player.getCurentImageIndex();
+
+		if(this.player.moveRight){
+			index = (index < 3) ? ++index : 0;
+			this.player.setCurentImageIndex(index);
+		}else if(this.player.moveLeft){
+			index = (index > 3 && index < 7) ? ++index : 4;
+			this.player.setCurentImageIndex(index);
+		}else if(this.player.moveDown || this.player.moveUp){
+			index = (index < 7) ? ++index : 0;
+			this.player.setCurentImageIndex(index++);
+		}else{
+			index = (index < 3) ? 0 : 7;
+			this.player.setCurentImageIndex(index);
+		}
+
 	}
 
 	public synchronized void startGame(){
@@ -89,5 +119,31 @@ public class Game implements Runnable{
 		}
 
 	}
+
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			this.player.moveRight=true;
+		}else if(e.getKeyCode()==KeyEvent.VK_LEFT){
+			this.player.moveLeft=true;
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			this.player.moveDown=true;
+		}else if(e.getKeyCode() == KeyEvent.VK_UP){
+			this.player.moveUp=true;
+		}
+	}
+
+	public void keyReleased(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			this.player.moveRight=false;
+		}else if(e.getKeyCode()==KeyEvent.VK_LEFT){
+			this.player.moveLeft=false;
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			this.player.moveDown=false;
+		}else if(e.getKeyCode() == KeyEvent.VK_UP){
+			this.player.moveUp=false;
+		}
+	}
+
+	public void keyTyped(KeyEvent e){}
 
 }

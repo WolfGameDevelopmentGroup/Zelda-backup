@@ -48,24 +48,6 @@ public class Player extends Entities{
 		this.curentImageIndex = index;
 	}
 
-	public void draw(Graphics g, boolean moveRight){
-
-		Graphics2D g2 = (Graphics2D) g;
-
-		if(moveRight){
-			if(this.curentImageIndex < 4){
-				g2.drawImage(this.image[this.curentImageIndex],
-				this.x,this.y,this.width,this.height,null);
-			}
-		} else {
-			if(this.curentImageIndex <= 7){
-				g2.drawImage(this.image[this.curentImageIndex],
-				this.x,this.y,this.width,this.height,null);
-			}
-		}
-
-	}
-
 	public void update(){}
 
 }

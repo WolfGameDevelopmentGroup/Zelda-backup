@@ -32,6 +32,10 @@ public abstract class Entities{
 	protected int y;
 	protected BufferedImage[] image = new BufferedImage[8];
 	protected int curentImageIndex = 0;
+	protected boolean moveRight=false;
+	protected boolean moveLeft=false;
+	protected boolean moveUp=false;
+	protected boolean moveDown=false;
 
 
 	public void setSize(int WIDTH,int HEIGHT){
