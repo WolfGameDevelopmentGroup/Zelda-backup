@@ -42,6 +42,8 @@ public class Screen extends Canvas{
 	private Color bgColor = Color.WHITE;
 	private Graphics g;
 	protected SpriteSheet sheet;
+	protected SpriteSheet map;
+	protected int[] pixels;
 
 	public Screen(String jframeTitle, int WIDTH, int HEIGHT, int SCALE) throws FileNotFoundException{
 		this.WIDTH = WIDTH;
@@ -69,6 +71,9 @@ public class Screen extends Canvas{
 		this.showScreen();
 		this.canvas.requestFocus();
 		this.sheet = new SpriteSheet("/images/spritesheet.png");
+		this.map = new SpriteSheet("/images/map.png");
+		this.pixels = new int[this.map.spritesheet.getWidth() * this.map.spritesheet.getHeight()];
+		this.loadMap();
 		
 	}
 
@@ -102,6 +107,21 @@ public class Screen extends Canvas{
 
 	public void setBackgroungColor(Color bgColor){
 		this.bgColor = bgColor;
+	}
+
+	public void loadMap(){
+
+		int width = this.map.spritesheet.getWidth();
+		int height = this.map.spritesheet.getHeight();
+		int i;
+
+		this.map.spritesheet.getRGB(0,0,width,height,this.pixels,0,width);
+
+		for(i=0; i < pixels.length; i++){
+			if(pixels[i] == 0xFFFF0000) 
+				System.out.println("RED pixel");
+		}
+
 	}
 
 }

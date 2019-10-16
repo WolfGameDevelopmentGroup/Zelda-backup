@@ -23,7 +23,7 @@ import java.net.URL;
 
 public class SpriteSheet{
 
-	private BufferedImage spritesheet;
+	protected BufferedImage spritesheet;
 
 	public SpriteSheet(String path) throws FileNotFoundException{
 
