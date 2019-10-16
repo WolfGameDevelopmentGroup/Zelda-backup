@@ -24,10 +24,14 @@ import java.net.URL;
 public class Map extends SpriteSheet{
 
 	protected int[] pixels;
+	protected BufferedImage tileFloor;
+	protected BufferedImage tileGrass;
 
-	public Map(String path) throws FileNotFoundException{
+	public Map(String path, SpriteSheet tiles) throws FileNotFoundException{
 
 		super(path);
+		this.tileFloor = tiles.getSprite(0,0,16,16);
+		this.tileGrass = tiles.getSprite(16,0,16,16);
 
 		this.pixels = new int[this.spritesheet.getWidth() * this.spritesheet.getHeight()];
 		this.loadMap();
@@ -46,8 +50,11 @@ public class Map extends SpriteSheet{
 
 				currentPixel = pixels[xx + yy * width];
 
-				if(currentPixel == 0xFFFF0000) 
-					System.out.println("RED pixel");
+				if(currentPixel == 0xFF000000){ 
+					System.out.println("Floor");
+				}else if(currentPixel == 0xFFFFFFFF){
+					System.out.println("Grass");
+				}
 			}
 		}
 

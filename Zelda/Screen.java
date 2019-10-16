@@ -71,7 +71,7 @@ public class Screen extends Canvas{
 		this.showScreen();
 		this.canvas.requestFocus();
 		this.sheet = new SpriteSheet("/images/spritesheet.png");
-		this.map = new Map("/images/map.png");
+		this.map = new Map("/images/map.png",this.sheet);
 		
 	}
 
