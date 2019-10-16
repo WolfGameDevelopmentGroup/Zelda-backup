@@ -44,7 +44,7 @@ public class Game implements Runnable, KeyListener{
 		this.screen = new Screen(TITLE, SCREEN_WIDTH, SCREEN_HEIGHT, SCALE);
 		this.screen.setBackgroungColor(Color.WHITE);
 		int x=100, y=100;
-		this.player = new Player(32*SCALE,32*SCALE,x,y,this.screen.sheet);
+		this.player = new Player(16*SCALE,16*SCALE,x,y,this.screen.sheet);
 		this.screen.canvas.addKeyListener(this);
 	}
 

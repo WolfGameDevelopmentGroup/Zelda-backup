@@ -90,6 +90,7 @@ public class Screen extends Canvas{
 	public void drawFrame(Player player){
 		this.g = this.layer.getGraphics();
 		this.drawBackground();
+		this.map.draw(this.g, this.SCALE);
 
 		player.draw(this.g);
 

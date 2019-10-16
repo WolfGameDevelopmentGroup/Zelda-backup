@@ -20,6 +20,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import Zelda.FileNotFoundException;
 import java.net.URL; 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Map extends SpriteSheet{
 
@@ -41,9 +43,17 @@ public class Map extends SpriteSheet{
 
 		int width = this.spritesheet.getWidth();
 		int height = this.spritesheet.getHeight();
-		int xx, yy, currentPixel;
 
 		this.spritesheet.getRGB(0,0,width,height,this.pixels,0,width);
+	}
+
+	public void draw(Graphics g, int SCALE){
+
+		int width = this.spritesheet.getWidth();
+		int height = this.spritesheet.getHeight();
+		int xx, yy, currentPixel;
+
+		Graphics2D g2 = (Graphics2D) g;
 
 		for(xx=0; xx < width; xx++){
 			for(yy=0; yy < height; yy++){
@@ -51,12 +61,11 @@ public class Map extends SpriteSheet{
 				currentPixel = pixels[xx + yy * width];
 
 				if(currentPixel == 0xFF000000){ 
-					System.out.println("Floor");
+					g2.drawImage(this.tileFloor,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 				}else if(currentPixel == 0xFFFFFFFF){
-					System.out.println("Grass");
+					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 				}
 			}
 		}
-
 	}
 }
