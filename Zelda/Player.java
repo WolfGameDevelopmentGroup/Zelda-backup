@@ -48,6 +48,26 @@ public class Player extends Entities{
 		this.curentImageIndex = index;
 	}
 
+
+	public void animatePlayer(){
+		
+		int index = this.getCurentImageIndex();
+
+		if(this.moveRight){
+			index = (index < 3) ? ++index : 0;
+			this.setCurentImageIndex(index);
+		}else if(this.moveLeft){
+			index = (index > 3 && index < 7) ? ++index : 4;
+			this.setCurentImageIndex(index);
+		}else if(this.moveDown || this.moveUp){
+			index = (index < 7) ? ++index : 0;
+			this.setCurentImageIndex(index++);
+		}else{
+			index = (index < 3) ? 0 : 7;
+			this.setCurentImageIndex(index);
+		}
+
+	}
 	public void update(){}
 
 }

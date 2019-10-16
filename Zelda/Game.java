@@ -73,31 +73,10 @@ public class Game implements Runnable, KeyListener{
 
 		if(this.countGameFrame >= this.framesToUpdatePlayerImage){
 			this.countGameFrame = 0;
-			this.animatePlayer();
+			this.player.animatePlayer();
 		}
 
 		this.screen.drawFrame(this.player);
-	}
-
-
-	public void animatePlayer(){
-		
-		int index = this.player.getCurentImageIndex();
-
-		if(this.player.moveRight){
-			index = (index < 3) ? ++index : 0;
-			this.player.setCurentImageIndex(index);
-		}else if(this.player.moveLeft){
-			index = (index > 3 && index < 7) ? ++index : 4;
-			this.player.setCurentImageIndex(index);
-		}else if(this.player.moveDown || this.player.moveUp){
-			index = (index < 7) ? ++index : 0;
-			this.player.setCurentImageIndex(index++);
-		}else{
-			index = (index < 3) ? 0 : 7;
-			this.player.setCurentImageIndex(index);
-		}
-
 	}
 
 	public synchronized void startGame(){
