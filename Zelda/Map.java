@@ -28,12 +28,20 @@ public class Map extends SpriteSheet{
 	protected int[] pixels;
 	protected BufferedImage tileFloor;
 	protected BufferedImage tileGrass;
+	protected BufferedImage tileEnemy;
+	protected BufferedImage tileGun;
+	protected BufferedImage tilePack;
+	protected BufferedImage tileLife;
 
 	public Map(String path, SpriteSheet tiles) throws FileNotFoundException{
 
 		super(path);
-		this.tileFloor = tiles.getSprite(0,0,16,16);
-		this.tileGrass = tiles.getSprite(16,0,16,16);
+		this.tileFloor = tiles.getSprite(16,0,16,16);
+		this.tileGrass = tiles.getSprite(0,0,16,16);
+		this.tileEnemy = tiles.getSprite(7*16,16,16,16);
+		this.tileGun = tiles.getSprite(7*16,0,16,16);
+		this.tilePack = tiles.getSprite(6*16,16,16,16);
+		this.tileLife = tiles.getSprite(6*16,0,16,16);
 
 		this.pixels = new int[this.spritesheet.getWidth() * this.spritesheet.getHeight()];
 		this.loadMap();
@@ -61,8 +69,22 @@ public class Map extends SpriteSheet{
 				currentPixel = pixels[xx + yy * width];
 
 				if(currentPixel == 0xFF000000){ 
-					g2.drawImage(this.tileFloor,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 				}else if(currentPixel == 0xFFFFFFFF){
+					g2.drawImage(this.tileFloor,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+				}else if(currentPixel == 0xFFFF0000){
+					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+					g2.drawImage(this.tileEnemy,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+				}else if(currentPixel == 0xFF6A00){
+					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+					g2.drawImage(this.tileGun,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+				}else if(currentPixel == 0xFF00FF21){
+					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+					g2.drawImage(this.tilePack,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+				}else if(currentPixel == 0xFFFFD800){
+					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+					g2.drawImage(this.tileLife,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
+				}else{
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 				}
 			}
