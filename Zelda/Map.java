@@ -1,13 +1,13 @@
 /*
-	 SpriteSheet.java (java)
+	 Map.java (java)
 	 
-	 Purpose: To load game objects sprites.
+	 Purpose: To load game map sprites.
 	 
 	 Version 0.1
 	 
 	 Site: http://www.dirackslounge.online
 	 
-	 Programer: Rodolfo A. C. Neves (Dirack) 06/07/2019
+	 Programer: Rodolfo A. C. Neves (Dirack) 16/10/2019
 	 
 	 Email: rodolfo_profissional@hotmail.com
 	 
