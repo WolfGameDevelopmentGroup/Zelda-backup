@@ -66,28 +66,39 @@ public class Map extends SpriteSheet{
 		for(xx=0; xx < width; xx++){
 			for(yy=0; yy < height; yy++){
 
-				currentPixel = pixels[xx + yy * width];
+				currentPixel = this.pixels[xx + yy * width];
 
-				if(currentPixel == 0xFF000000){ 
+				if(currentPixel == hexaColor.BLACK.value){ 
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
-				}else if(currentPixel == 0xFFFFFFFF){
+				}else if(currentPixel == hexaColor.WHITE.value){
 					g2.drawImage(this.tileFloor,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
-				}else if(currentPixel == 0xFFFF0000){
+				}else if(currentPixel == hexaColor.RED.value){
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 					g2.drawImage(this.tileEnemy,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
-				}else if(currentPixel == 0xFF6A00){
+				}else if(currentPixel == hexaColor.ORANGE.value){
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 					g2.drawImage(this.tileGun,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
-				}else if(currentPixel == 0xFF00FF21){
+				}else if(currentPixel == hexaColor.GREEN.value){
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 					g2.drawImage(this.tilePack,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
-				}else if(currentPixel == 0xFFFFD800){
+				}else if(currentPixel == hexaColor.YELLOW.value){
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 					g2.drawImage(this.tileLife,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 				}else{
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
 				}
 			}
+		}
+	}
+
+	public enum hexaColor{
+		BLACK(0xFF000000), WHITE(0xFFFFFFFF), RED(0xFFFF0000), ORANGE(0xFF6A00),
+		GREEN(0xFF00FF21), YELLOW(0xFFFFD800);
+
+		private int value;
+
+		hexaColor(int value){
+			this.value = value;
 		}
 	}
 }
