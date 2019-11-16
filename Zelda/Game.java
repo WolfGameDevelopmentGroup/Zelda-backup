@@ -55,13 +55,13 @@ public class Game implements Runnable, KeyListener{
 	public void updateGame(){
 		this.frame++;
 
-		if(this.player.moveRight){
+		if(this.player.moveRight && this.screen.isFree(this.player.x + this.SCALE)){
 			this.player.x += this.SCALE;
-		}else if(this.player.moveLeft){
+		}else if(this.player.moveLeft && this.screen.isFree(this.player.x - this.SCALE)){
 			this.player.x -= this.SCALE;
-		}else if(this.player.moveUp){
+		}else if(this.player.moveUp && this.screen.isFree(this.player.y - this.SCALE)){
 			this.player.y -= this.SCALE;
-		}else if(this.player.moveDown){
+		}else if(this.player.moveDown && this.screen.isFree(this.player.y + this.SCALE)){
 			this.player.y += this.SCALE;
 		}
 

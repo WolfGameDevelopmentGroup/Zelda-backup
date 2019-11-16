@@ -108,4 +108,9 @@ public class Screen extends Canvas{
 		this.bgColor = bgColor;
 	}
 
+	public boolean isFree(int position){
+
+		return true;
+	}
+
 }
