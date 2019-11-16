@@ -32,6 +32,8 @@ public class Map extends SpriteSheet{
 	protected BufferedImage tileGun;
 	protected BufferedImage tilePack;
 	protected BufferedImage tileLife;
+	protected int width;
+	protected int height;
 
 	public Map(String path, SpriteSheet tiles) throws FileNotFoundException{
 
@@ -42,29 +44,26 @@ public class Map extends SpriteSheet{
 		this.tileGun = tiles.getSprite(7*16,0,16,16);
 		this.tilePack = tiles.getSprite(6*16,16,16,16);
 		this.tileLife = tiles.getSprite(6*16,0,16,16);
+		this.width = this.spritesheet.getWidth();
+		this.height = this.spritesheet.getHeight();
 
-		this.pixels = new int[this.spritesheet.getWidth() * this.spritesheet.getHeight()];
+		this.pixels = new int[this.width * this.height];
 		this.loadMap();
 	}
 
 	public void loadMap(){
 
-		int width = this.spritesheet.getWidth();
-		int height = this.spritesheet.getHeight();
-
-		this.spritesheet.getRGB(0,0,width,height,this.pixels,0,width);
+		this.spritesheet.getRGB(0,0,this.width,this.height,this.pixels,0,this.width);
 	}
 
 	public void draw(Graphics g, int SCALE){
 
-		int width = this.spritesheet.getWidth();
-		int height = this.spritesheet.getHeight();
 		int xx, yy, currentPixel;
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		for(xx=0; xx < width; xx++){
-			for(yy=0; yy < height; yy++){
+		for(xx=0; xx < this.width; xx++){
+			for(yy=0; yy < this.height; yy++){
 
 				currentPixel = this.pixels[xx + yy * width];
 
