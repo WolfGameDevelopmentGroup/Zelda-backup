@@ -88,15 +88,21 @@ public class Screen extends Canvas{
 	}
 
 	public void drawFrame(Player player){
-		this.g = this.layer.getGraphics();
+
+		int width = this.WIDTH*this.SCALE;
+		int height = this.HEIGHT*this.SCALE;
+
+		//this.g = this.layer.getGraphics();
+		this.g = this.bs.getDrawGraphics();
 		this.drawBackground();
 		this.map.draw(this.g, this.SCALE);
 
 		player.draw(this.g);
 
-		this.g = this.bs.getDrawGraphics();
-		this.g.drawImage(this.layer, 0, 0, this.WIDTH*this.SCALE,this.HEIGHT*this.SCALE,null);
+		//this.g = this.bs.getDrawGraphics();
+		//this.g.drawImage(this.layer, player.x - width/2, player.y - height/2,width,height,null);
 		this.bs.show();
+		this.g.dispose();
 	}
 
 	private void drawBackground(){
