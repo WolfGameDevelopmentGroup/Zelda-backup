@@ -65,7 +65,7 @@ public class Map extends SpriteSheet{
 		for(xx=0; xx < this.width; xx++){
 			for(yy=0; yy < this.height; yy++){
 
-				currentPixel = this.pixels[xx + yy * width];
+				currentPixel = this.pixels[xx + yy * this.width];
 
 				if(currentPixel == hexaColor.BLACK.value){ 
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);
@@ -94,7 +94,7 @@ public class Map extends SpriteSheet{
 		BLACK(0xFF000000), WHITE(0xFFFFFFFF), RED(0xFFFF0000), ORANGE(0xFF6A00),
 		GREEN(0xFF00FF21), YELLOW(0xFFFFD800);
 
-		private int value;
+		public int value;
 
 		hexaColor(int value){
 			this.value = value;

@@ -108,7 +108,16 @@ public class Screen extends Canvas{
 		this.bgColor = bgColor;
 	}
 
-	public boolean isFree(int position){
+	public boolean isFree(int x, int y){
+
+		int xInPixelMapScale = (int) (x/(16*this.SCALE));
+		int yInPixelMapScale = (int) (y/(16*this.SCALE));
+
+		int pixel = this.map.pixels[xInPixelMapScale + yInPixelMapScale * this.map.width];
+
+		if(pixel == 0xFFFFFFFF){
+			return false;
+		}
 
 		return true;
 	}
