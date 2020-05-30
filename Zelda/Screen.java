@@ -95,7 +95,7 @@ public class Screen extends Canvas{
 		//this.g = this.layer.getGraphics();
 		this.g = this.bs.getDrawGraphics();
 		this.drawBackground();
-		this.map.draw(this.g, this.SCALE);
+		this.map.draw(this.g, this.SCALE,player.x,player.y,width,height);
 
 		player.draw(this.g);
 
@@ -118,6 +118,8 @@ public class Screen extends Canvas{
 
 		int xInPixelMapScale = (int) (x/(16*this.SCALE));
 		int yInPixelMapScale = (int) (y/(16*this.SCALE));
+		xInPixelMapScale += this.map.firstPixelx;
+		yInPixelMapScale += this.map.firstPixely;
 
 		int pixel = this.map.pixels[xInPixelMapScale + yInPixelMapScale * this.map.width];
 

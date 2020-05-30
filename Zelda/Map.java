@@ -34,6 +34,8 @@ public class Map extends SpriteSheet{
 	protected BufferedImage tileLife;
 	protected int width;
 	protected int height;
+	public int firstPixelx;
+	public int firstPixely;
 
 	public Map(String path, SpriteSheet tiles) throws FileNotFoundException{
 
@@ -56,16 +58,27 @@ public class Map extends SpriteSheet{
 		this.spritesheet.getRGB(0,0,this.width,this.height,this.pixels,0,this.width);
 	}
 
-	public void draw(Graphics g, int SCALE){
+	public void draw(Graphics g, int SCALE, int playerx, int playery, int screenWidth, int screenHeight){
 
 		int xx, yy, currentPixel;
+		playerx = (int)(playerx/(16*SCALE));
+		playery = (int)(playery/(16*SCALE));
+		screenWidth = (int)(screenWidth/(16*SCALE));
+		screenHeight = (int)(screenHeight/(16*SCALE));
+		this.firstPixelx = playerx - screenWidth/2;
+		this.firstPixely = 0;
+
+		if(playerx < screenWidth/2) firstPixelx = 0;
+		if((playery + screenHeight/2) > this.height){
+			firstPixelx = this.width * this.height - screenHeight * screenWidth;
+		}
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		for(xx=0; xx < this.width; xx++){
-			for(yy=0; yy < this.height; yy++){
+		for(xx=0; xx < screenWidth+1; xx++){
+			for(yy=0; yy < screenHeight+1; yy++){
 
-				currentPixel = this.pixels[xx + yy * this.width];
+				currentPixel = this.pixels[(xx + this.firstPixelx) + yy * this.width];
 
 				if(currentPixel == hexaColor.BLACK.value){ 
 					g2.drawImage(this.tileGrass,xx*16*SCALE,yy*16*SCALE,16*SCALE,16*SCALE,null);

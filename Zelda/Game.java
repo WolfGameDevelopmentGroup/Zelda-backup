@@ -57,9 +57,9 @@ public class Game implements Runnable, KeyListener{
 		int x = this.player.x + this.player.width/2;
 		int y = this.player.y + this.player.height/2;
 
-		if(this.player.moveRight && this.screen.isFree(x + this.SCALE + this.player.width/4, y)){
+		if(this.player.moveRight && this.screen.isFree(x + this.SCALE + this.player.width/2, y)){
 			this.player.x += this.SCALE;
-		}else if(this.player.moveLeft && this.screen.isFree(x - this.SCALE - this.player.width/4, y)){
+		}else if(this.player.moveLeft && this.screen.isFree(x - this.SCALE - this.player.width/2, y)){
 			this.player.x -= this.SCALE;
 		}else if(this.player.moveUp && this.screen.isFree(x, y - this.SCALE - this.player.height/2)){
 			this.player.y -= this.SCALE;
